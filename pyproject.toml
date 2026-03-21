@@ -9,7 +9,7 @@ description = "pre-commit hook to lint/format BibTeX bibliographies"
 authors = [
     { name = "Karl Wette", email = "karl.wette@anu.edu.au" },
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "pybtex>=0.25",
 ]

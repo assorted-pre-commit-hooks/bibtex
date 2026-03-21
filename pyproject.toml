@@ -59,6 +59,7 @@ pre-commit try-repo . bibtex --files test/test-biblio.bib
 [tool.ppqs.scripts.upload]
 description = "Upload package"
 script = """
+ppqs lint
 git push origin
 git push origin --tags
 """

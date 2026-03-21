@@ -21,7 +21,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     for filename in args.filenames:
 

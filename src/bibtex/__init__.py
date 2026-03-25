@@ -49,6 +49,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             raise ParseError(msg)
         preamble = bib_data.preamble
 
+        # make entries types all lowercase
+        for entry in bib_data.entries.values():
+            entry.original_type = entry.original_type.lower()
+
         # sort BibTeX entries
         sorted_bib_data = BibliographyData(
             entries=dict(sorted(bib_data.entries.items()))

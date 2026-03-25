@@ -5,6 +5,7 @@
 """pre-commit hook to lint/format BibTeX bibliographies."""
 
 import argparse
+import re
 from typing import Sequence
 
 from pybtex.database import BibliographyData, parse_string
@@ -61,7 +62,14 @@ def main(argv: Sequence[str] | None = None) -> int:
                 f.write("\n")
             if preamble:
                 f.write(f'@preamble{{"{preamble}"}}\n\n')
-            f.write(sorted_bib_data.to_string("bibtex"))
+            bibtex_lines = sorted_bib_data.to_string("bibtex").splitlines()
+            for line in bibtex_lines:
+
+                # Do not escape underscores and ampersands in URLs
+                if re.search(r"url =", line) is not None:
+                    line = re.sub(r"\\([_&])", r"\1", line)
+
+                print(line, file=f)
 
     return 0
 
